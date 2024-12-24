@@ -23,7 +23,7 @@ def _add_token_balance(usdc: ABIContract, weth: ABIContract, active_network: Net
     usdc.configureMinter(our_address, STARTING_USDC_BALANCE)
     usdc.mint(our_address, STARTING_USDC_BALANCE)
     # because we now have the abi, we can use it to mint WETH
-    weth.deposit(alue=STARTING_WETH_BALANCE)
+    weth.deposit(value=STARTING_WETH_BALANCE)
 
 
 # these ABIContracts classes are to help us call contracts on blockchain when we don't know exactly the source code
@@ -41,3 +41,7 @@ def setup_script() -> Tuple[ABIContract, ABIContract, ABIContract, ABIContract]:
     if active_network.is_local_or_forked_network():
         _add_eth_balance()
         _add_token_balance(usdc, weth, active_network)
+
+
+def moccasin_main():
+    setup_script()
